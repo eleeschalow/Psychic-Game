@@ -3,14 +3,21 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Psychic Game</title>
+  <title>Rock Paper Scissors Part 1</title>
 </head>
 
 <body>
 
   <div id="game">
-    <h1>Psychic Game</h1>
-    <p>Can you guess which letter I am thinking of?</p>
+    <!-- Element to hold user's guess -->
+    <h2>User's guess:
+      <span id="user-guess"></span>
+    </h2>
+
+    <!-- Element to hold computer's guess -->
+    <h2>Computer's guess:
+      <span id="computer-guess"></span>
+    </h2>
 
     <!-- Elements to hold wins/losses/ties -->
     <p>Wins:
@@ -19,14 +26,14 @@
     <p>Losses:
       <span id="losses"></span>
     </p>
-    <p>User's guess:
-      <span id="user-guess"></span>
+    <p>Ties:
+      <span id="ties"></span>
     </p>
   </div>
 
   <script type="text/javascript">
     // Possible computer choices
-    var computerChoices = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+    var computerChoices = ['r','p','s'];
 
     // Grab all HTML Elements
     var userHTML = document.getElementById('user-guess');
@@ -49,18 +56,28 @@
       var computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
       // run if/else statement checking to see if user input matches r/p/s
-      if (userChoice = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z';]){
+      if (userChoice === 'r' || userChoice === 'p' || userChoice === 's'){
         // Run Game
-          if (userChoice === computerChoice) {
-          wins++;
-        } else if {
+        if (userChoice === computerChoice) {
+          ties++;
+        } else if (userChoice === 'r' && computerChoice === 'p') {
           losses++;
-    } else {
+        } else if (userChoice === 'r' && computerChoice === 's') {
+          wins++;
+        } else if (userChoice === 'p' && computerChoice === 'r') {
+          wins++;
+        } else if (userChoice === 'p' && computerChoice === 's') {
+          losses++;
+        } else if (userChoice === 's' && computerChoice === 'p') {
+          wins++;
+        } else if (userChoice === 's' && computerChoice === 'r') {
+          losses++;
+        } else {
           alert('you broke the game');
         }
 
         userHTML.textContent = userChoice;
-        computerHTML.textContent = computerChoice;
+        
         winsHTML.textContent = wins;
         lossesHTML.textContent = losses;
         tiesHTML.textContent = ties;
